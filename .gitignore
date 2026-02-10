@@ -1,0 +1,48 @@
+# Byte-compiled / cached files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Poetry/uv cache
+uv.lock
+
+# Testing / tooling
+.pytest_cache/
+.mypy_cache/
+.coverage
+
+# FastAPI / app runtime
+*.db
+*.sqlite3
+
+# Environment files
+.env
+.env.*
+
+# Docker artifacts
+docker-compose.override.yml
+docker-compose.*.yml
+**/docker-compose.override.yml
+**/docker-compose.*.yml
+*.log
+
+# Misc
+.DS_Store
+.idea/
+*.swp
+
+# Python version
+.python-version
