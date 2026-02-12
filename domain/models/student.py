@@ -12,6 +12,13 @@ class StudentStatus(str, Enum):
     DEACTIVATED = "DEACTIVATED"
 
 
+class StudentCreate(BaseModel):
+    first_name: str
+    last_name: str
+    email: str
+    age: int
+
+    
 class Student(BaseModel):
     id: int
     first_name: str

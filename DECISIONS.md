@@ -36,6 +36,7 @@ Todos los elementos con los que interactua el dominio son agregados aqui.
     - Repositorio base (abstract) con los queries de lectura comunes para los 3 dominios principales
     - Implementacion para uso con postgres SQL (tal vez el nombre deba ser distinto)
     - La paginacion se realiza en el repositorio usando la tecnica offset y limit. Sin embargo para facilitar la implementacion de la paginacion en el servidor se implemento la libreria fastapi-pagination. Esto requirio un conversion de los params `Page y Size` a `offset y limit`.
+    - Repositorios por dominio fueron creados, metodos para obtener, crear y eliminar registros (no updates por el momento).
 
 ## routers
 Cada dominio tiene su propio router, esto permite que cada uno pueda escalar independientemente.

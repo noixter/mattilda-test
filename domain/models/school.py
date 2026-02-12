@@ -11,3 +11,8 @@ class School(BaseModel):
     created_at: datetime
     students: list[Student] = []
     total_debt: Optional[Decimal] = None
+
+
+class SchoolCreate(BaseModel):
+    ref: str
+    name: str
