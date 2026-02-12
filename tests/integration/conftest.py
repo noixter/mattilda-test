@@ -30,7 +30,7 @@ async def db_session() -> AsyncGenerator[AsyncSession, None]:
     async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
-    
+
     async with TestAsyncSessionLocal() as session:
         yield session
         await session.rollback()
@@ -39,25 +39,35 @@ async def db_session() -> AsyncGenerator[AsyncSession, None]:
 @pytest.fixture(scope="function")
 async def client(db_session: AsyncSession) -> AsyncGenerator[AsyncClient, None]:
     from infrastructure.database.db_engine import AsyncSessionLocal
-    from dependencies import get_student_repository, get_school_repository, get_invoice_repository
-    from infrastructure.repositories.postgres import StudentRepository, SchoolRepository, InvoiceRepository
-    
+    from dependencies import (
+        get_student_repository,
+        get_school_repository,
+        get_invoice_repository,
+    )
+    from infrastructure.repositories.postgres import (
+        StudentRepository,
+        SchoolRepository,
+        InvoiceRepository,
+    )
+
     def override_student_repo():
         return StudentRepository(session_factory=TestAsyncSessionLocal)
-    
+
     def override_school_repo():
         return SchoolRepository(session_factory=TestAsyncSessionLocal)
-    
+
     def override_invoice_repo():
         return InvoiceRepository(session_factory=TestAsyncSessionLocal)
-    
+
     app.dependency_overrides[get_student_repository] = override_student_repo
     app.dependency_overrides[get_school_repository] = override_school_repo
     app.dependency_overrides[get_invoice_repository] = override_invoice_repo
-    
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+
+    async with AsyncClient(
+        transport=ASGITransport(app=app), base_url="http://test"
+    ) as ac:
         yield ac
-    
+
     app.dependency_overrides.clear()
 
 
@@ -114,7 +124,7 @@ async def sample_invoices(db_session: AsyncSession, sample_students, sample_scho
     from decimal import Decimal
     from datetime import datetime
     from domain.models.invoice import InvoiceStatus
-    
+
     invoices = [
         InvoiceTable(
             ref="INV001",

@@ -10,6 +10,7 @@ dependencies = [
     "pydantic[email]>=2.12.5",
     "sqlalchemy>=2.0.46",
     "fastapi-pagination>=0.15.10",
+    "ruff>=0.15.0",
 ]
 
 [dependency-groups]

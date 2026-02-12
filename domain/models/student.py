@@ -18,7 +18,7 @@ class StudentCreate(BaseModel):
     email: str
     age: int
 
-    
+
 class Student(BaseModel):
     id: int
     first_name: str

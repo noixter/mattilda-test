@@ -66,14 +66,14 @@ async def list_school_students(
 ) -> Page[Student]:
     offset = (params.page - 1) * params.size
     result = await service.get_school_students(
-        filters={"id": school_id}, 
+        filters={"id": school_id},
         active=active,
         offset=offset,
         limit=params.size,
     )
     if not result:
         raise HTTPException(status_code=404, detail="School not found")
-    
+
     school, total = result
     return Page.create(items=school.students, params=params, total=total)
 

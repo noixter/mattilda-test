@@ -8,10 +8,12 @@ from fastapi_pagination import add_pagination
 
 app = FastAPI()
 
+
 @app.on_event("startup")
 async def on_startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+
 
 app.include_router(schools.router)
 app.include_router(students.router)
@@ -29,6 +31,8 @@ async def read_root():
         "timestamp": datetime.now().isoformat(),
     }
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

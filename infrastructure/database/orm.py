@@ -14,7 +14,6 @@ from domain.models.invoice import InvoiceStatus
 from infrastructure.database.db_engine import Base
 
 
-
 class StudentTable(Base):
     __tablename__ = "students"
 
