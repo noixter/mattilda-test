@@ -34,7 +34,6 @@ services:
       - .:/app
     depends_on:
       - db
-    command: pytest --cov=./ --cov-report=xml
 
 volumes:
   db_data:
